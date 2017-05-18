@@ -30,43 +30,31 @@ class DeleteController extends AbstractSprintController
         {
             return $this->redirectToHomePage();
         }
+        
         if(!$this->hasScrumMasterAccess() || !$this->hasScrumMasterAccess())
         {
             return  $this->redirectToSprint();
         }
-        //remove sprint
+        
         $sprint=$this->readSprint();
         $sprint->getUser()->setSprint(null);
-//         $this->getDoctrine()->getManager()->flush();
-        
-        //enlever les references
         $users = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository(\AuthBundle\Entity\User::class)
             ->findBy(["sprint" => $this->getSprintAccess(),
-          ]); 
-        
-       
+            ]); 
         foreach ($users as $user) 
         {
            $user->setSprint(null);
            $this->getDoctrine()->getManager()->flush();
-           
         }
-        
-       
         $this->getDoctrine()->getManager()->remove($sprint);
         $this->getDoctrine()->getManager()->flush();
-        
-        //revocation des droits
         $this->session->remove("sprint");
         $this->session->remove("master");
         return $this->redirectToCreate();
-        
      } 
-        
-        
 }        
         
         

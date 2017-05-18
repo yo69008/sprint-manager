@@ -24,14 +24,12 @@ class SprintController extends AbstractSprintController
         } else if (!$this->hasSprintAccess()) {
             return $this->redirectToCreate();   
         }
-        
-   
-        
-        $sprint = $this->readSprint();
+
+       $sprint = $this->readSprint();
        $duration = $sprint->getDay() * 86400;
-          $lapsed = time()- $sprint->getTime();
-          $done= $lapsed / $duration * 100;
-          $percent =round($lapsed / $duration * 100,2);
+       $lapsed = time()- $sprint->getTime();
+       $done= $lapsed / $duration * 100;
+       $percent =round($lapsed / $duration * 100,2);
           
         return $this->render('@SprintBundle/Resources/views/sprint.html.twig', [
             "title" => "The Sprint",

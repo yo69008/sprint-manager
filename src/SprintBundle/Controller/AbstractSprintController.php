@@ -16,10 +16,12 @@ abstract class AbstractSprintController extends AbstractAppController
     {
         parent::__construct();
     }
+    
     protected function getSprintAccess()
     {
         return $this->session->get("sprint");    
     }
+    
     protected function hasSprintAccess()
     {
         return (bool) $this->getSprintAccess();
@@ -27,7 +29,6 @@ abstract class AbstractSprintController extends AbstractAppController
     
     protected function readUserSprint()
     {
-        
      return $this->getDoctrine()
      ->getManager()
      ->getRepository(\AuthBundle\Entity\User::class)
@@ -35,12 +36,13 @@ abstract class AbstractSprintController extends AbstractAppController
          "id" => $this->getGlobalAccess()
      ])
      ->getSprint();
-    
     }
+    
     protected function setSprintAccess(Sprint $sprint)
     {
      $this->session->set("sprint", $sprint->getId());
     }
+    
     protected function redirectToSprint()
     {
         return $this->redirectToRoute("sprint");
@@ -57,19 +59,20 @@ abstract class AbstractSprintController extends AbstractAppController
             $sprint->getUser()->getId()
             === $this->getGlobalAccess()
             );
-  
    }
+   
    protected function getScrumMasterAccess()
    {
        return $this->session->get("master");  
    }
+   
    protected function hasScrumMasterAccess() : bool
    {
        return (bool) $this->getScrumMasterAccess();
    }
-    protected function readSprint()
+   
+   protected function readSprint()
     {
-       
         return $this->getDoctrine()
         ->getManager()
         ->getRepository(\SprintBundle\Entity\Sprint::class)
@@ -77,9 +80,5 @@ abstract class AbstractSprintController extends AbstractAppController
             "id" => $this->getSprintAccess()
         ]);
     }
-    
-    
-    
-    
 }
 

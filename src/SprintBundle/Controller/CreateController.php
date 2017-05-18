@@ -13,69 +13,69 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use SprintBundle\Entity\Sprint;
 
-
-
 class CreateController extends AbstractSprintController
 {
-    
     public function __construct()
     {
         parent::__construct();
     }
+    
     /**
      * @Route("/create", name="create")
      */
     public function createAction(Request $request)
     {
-        if (!$this->hasGlobalAccess()){
+        if (!$this->hasGlobalAccess())
+        {
             return $this->redirectToHomePage();
-        }else if ($this->hasSprintAccess()) {
+        }else if ($this->hasSprintAccess()) 
+        {
            return $this->redirectToSprint();
         } else {
             $sprint =$this->readUserSprint();
-            if($sprint) {
+            if($sprint) 
+            {
                 $this->setSprintAccess($sprint);
                 $this->setScrumMasterAccess($sprint);
-             return $this->redirectToSprint();
+                return $this->redirectToSprint();
             }
-        }
+       }
        $form =$this->getCreateForm();
        $form->handleRequest($request);
        
-       if ($form->isSubmitted() && $form->isValid() ) {
+       if ($form->isSubmitted() && $form->isValid() ) 
+       {
            $sprint=$this->createSprint($form);
            $this->setSprintAccess($sprint);
            $this->setScrumMasterAccess($sprint);
-         return  $this->redirectToSprint();
+           return  $this->redirectToSprint();
        }
-       
        return  $this->render(
-        "@SprintBundle/Resources/Views/create.html.twig", [
+            "@SprintBundle/Resources/Views/create.html.twig", [
             "form" => $form->createView(),
-        ]);  
-       }  
-       
-       private function getCreateForm(): Form
+       ]);  
+    }  
+       /**
+        * get Create Form
+        * 
+        * @return Form
+        */
+    private function getCreateForm(): Form
     {
         $builder=$this->createFormBuilder();       
-      
-        
-             $builder->add("goal",
-                TextType::class,[
-                "label"=> "Goal(s)",
-                'constraints' => [
-                    new Regex([
-                        "pattern" =>"/^[\w]{6,64}$/",
-                        "message" =>"Incorrect Goal !"
-                    ]),
-                    new NotBlank([
-                        "message"=>"Goal must existing !"
-                    ])
-                ]
-                
-            ]);
-        
-        
+        $builder->add("goal",
+            TextType::class,[
+            "label"=> "Goal(s)",
+            'constraints' => [
+                new Regex([
+                    "pattern" =>"/^[\w]{6,64}$/",
+                    "message" =>"Incorrect Goal !"
+                ]),
+                new NotBlank([
+                    "message"=>"Goal must existing !"
+                ])
+            ]
+        ]);
         $builder->add
         ("description",
             TextareaType::class, [
@@ -91,7 +91,7 @@ class CreateController extends AbstractSprintController
                 ]
             ]
             
-            );
+        );
         $builder->add
         ("day",
             TextType::class, [
@@ -106,14 +106,12 @@ class CreateController extends AbstractSprintController
                     ])
                 ]
             ]
-            
-            );
+        );
         $builder->add("create", SubmitType::class,[
             "label"=>"Create Sprint",
             'attr' => ["class" => "btn btn-primary btn-lg "
             ]
         ]);
-        
         return $builder->getForm();
       }  
       private function createSprint(Form $form): Sprint
@@ -123,20 +121,16 @@ class CreateController extends AbstractSprintController
           ->getRepository(\AuthBundle\Entity\User::class)
           ->findOneBy([
               "id" =>$this->getGlobalAccess()
-              
           ]);
-          
           $sprint = new Sprint;
           $sprint->setGoal($form->getData()["goal"]);
           $sprint->setDescription($form->getData()["description"]);
           $sprint->setDay($form->getData()["day"]);
           $sprint->setTime(time());
           
-         
           $sprint->setUser($user);
           $this->getDoctrine()->getManager()->persist($sprint);
           $this->getDoctrine()->getManager()->flush();
-          
           
           $user->setSprint($sprint);
           $this->getDoctrine()->getManager()->persist($user);

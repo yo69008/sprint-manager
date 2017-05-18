@@ -12,13 +12,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 use AuthBundle\Entity\User;
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\Button;
-
-
 
 abstract class AbstractAuthController extends AbstractAppController
 {
-    
     public function __construct()
     {
       parent::__construct(); 
@@ -36,7 +32,6 @@ abstract class AbstractAuthController extends AbstractAppController
      protected function getAuthAndJoinForm($submitLabel)
    {
        $builder=$this->createFormBuilder();
-       
        $builder->add("email",
            EmailType::class,[
                "label"=> "Email adress",
@@ -51,42 +46,31 @@ abstract class AbstractAuthController extends AbstractAppController
                        "message"=>"Email adress must existing !"
                    ])
                ]
-               
            ]);
        
-       
        $builder->add
-       ("password",
-           TextType::class, [
-               "label"=> "Password",
-               'attr' => [
-                   'placeholder' =>'Enter your Password'
-               ],
-               'constraints' => [
-                   new Regex([
-                       "pattern" =>"/^[\w]{6,32}$/",
-                       "message" =>"Incorrect Password"
-                   ]),
-                   new NotBlank([
-                       "message"=>"Email adress must existing !"
-                   ])
+           ("password",
+               TextType::class, [
+                   "label"=> "Password",
+                   'attr' => [
+                       'placeholder' =>'Enter your Password'
+                   ],
+                   'constraints' => [
+                       new Regex([
+                           "pattern" =>"/^[\w]{6,32}$/",
+                           "message" =>"Incorrect Password"
+                       ]),
+                       new NotBlank([
+                           "message"=>"Email adress must existing !"
+                       ])
+                   ]
                ]
-           ]
-           
            );
        $builder->add("create", SubmitType::class,[
            "label"=> $submitLabel,
            'attr' => ["class" => "btn btn-primary btn-lg "
            ]
        ]);
-       
        return $builder->getForm();
-       
-       
    }
-    
-   
-  
-    
 }
-

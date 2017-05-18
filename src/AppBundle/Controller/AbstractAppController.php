@@ -11,35 +11,32 @@ abstract class AbstractAppController extends Controller
     protected $session;
     
     /**
-     *
+     * Construct
      */
     public function __construct()
     {
         $this->session =new Session();
     }
+    
     protected function redirectToHomePage() {
         return  $this->redirectToRoute("homepage");
     }
     
     protected function hasGlobalAccess():bool
     {
-        
-        
         return (bool) $this->getGlobalAccess();
-        
     }
+    
     protected function setGlobalAccess(User $user)
     {
         $this->session->set("id", $user->getId());
     }
+    
     protected function getGlobalAccess()
     {
         return (int) $this->session->get("id");
     }
-    
-    
-    
-    
+
 }
 
 

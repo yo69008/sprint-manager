@@ -2,13 +2,8 @@
 
 namespace AuthBundle\Controller;
 
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use AppBundle\Controller\AbstractAppController;
-
-
-
 
 class LeftController extends AbstractAppController
 {
@@ -21,14 +16,11 @@ class LeftController extends AbstractAppController
     * @Route("/left", name="left")
     */
     public function leftAction()
-    {
-        
-        
-        
-        if($this->hasGlobalAccess()) {
+    { 
+        if($this->hasGlobalAccess()) 
+        {
            $this->session->invalidate();
         }
         return $this->redirectToHomePage();
-      
     }
 }
