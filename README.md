@@ -4,7 +4,7 @@ This tool allows the creation of a sprint for planified projects.
 The people who create the sprint is The master, he can delete it .
 
 ## Demo
-For log-in or log-up the page will be :
+For log-in or create an account, the page will be :
 <img src="https://img4.hostingpics.net/pics/338747log.png" />
 
 When you create a sprint the window is :
