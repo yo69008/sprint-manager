@@ -41,11 +41,10 @@ class AuthController extends AbstractAuthController
                     $form->getData()["password"],
                     $user->getPassword()))
             {
-                    $this->setGlobalAccess($user);
-                    return  $this->redirectToHomePage();
-                }
+                $this->setGlobalAccess($user);
+                return  $this->redirectToHomePage();
+            }
         $message =self::ERROR_MESSAGE_AUTH;    
-         
       }
       return $this->render('@AuthBundle/Resources/views/sign.html.twig', [
                 "title" => "Sign In",
@@ -54,8 +53,8 @@ class AuthController extends AbstractAuthController
                 "url" => $this->generateUrl("join"),
                 "form"  => $form->createView(),
                 "message" =>isset($message) ? $message : "",
-            ]
-        );  
+                 ]
+             );  
     }         
 }               
   

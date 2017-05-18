@@ -13,7 +13,6 @@ class SprintController extends AbstractSprintController
         parent::__construct();
     }
     
-    
     /**
      * @Route("/sprint", name="sprint")
      */
@@ -31,7 +30,7 @@ class SprintController extends AbstractSprintController
        $done= $lapsed / $duration * 100;
        $percent =round($lapsed / $duration * 100,2);
           
-        return $this->render('@SprintBundle/Resources/views/sprint.html.twig', [
+       return $this->render('@SprintBundle/Resources/views/sprint.html.twig', [
             "title" => "The Sprint",
             "goal" => $sprint->getGoal(),
             "description" =>$sprint->getDescription(),
@@ -42,19 +41,6 @@ class SprintController extends AbstractSprintController
             "done" => $done,
             "percent" => $percent,
             "master" =>$this->hasScrumMasterAccess()
-        ]);
-        
-        
+            ]);
       }
-          
-}            
-           
-             
-            
-            
-        
-         
-         
-        
-    
-
+}

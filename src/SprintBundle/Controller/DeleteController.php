@@ -7,10 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use SprintBundle\Entity\Sprint;
 use SprintBundle\Entity\User;
 
-
-
-
-
 class DeleteController extends AbstractSprintController
 {
     
