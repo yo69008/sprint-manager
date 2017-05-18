@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block section %}
+
+<section>
+
+    <div id='logger' class='col-xs-8 col-xs-offset-2 col-md-2 col-md-offset-5'>
+    
+    	<span id='logo' class='col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4'>
+    		<a href="{{ path('homepage') }}"><img src="{{ asset('image/home.png') }}" alt="home" /></a>
+    	</span>
+    	
+    	<div class='col-xs-6 col-md-offset-3 '>
+    		<h1 id='title'>{{ title }}</h1>
+		</div>
+		<div class='col-md-offset-2'>    
+            {% if message %}
+            <p>{{ message }}</p>
+            {% endif %}
+    
+            {{ form_start(form, {'attr': { 'novalidate' : 'novalidate' }}) }}
+            {{ form_widget(form, {'attr': { 'placeholder' : 'email' }}) }}
+            {{ form_end(form) }}
+    
+            <p>
+            {{ legend }}
+             <a href="{{ url }}">{{ link }}</a>
+            </p>
+        </div>
+    	
+	</div>
+	
+</section>
+{% endblock %}
+
+
+
+
+

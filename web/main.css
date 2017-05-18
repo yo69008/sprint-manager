@@ -1,0 +1,116 @@
+@font-face {
+	font-family: logsprint;
+	src: url('./font/segoeui.woff') format('woff');
+}
+
+body {
+	background: #b3d9ff url('./image/course.png') no-repeat;
+}
+
+#returnHome {
+	position: relative;
+	margin-top: -12em 0 0 2em;
+	float:left;
+}
+
+section {
+	margin-top: 15em;
+}
+
+#barre {
+	margin:5% 38%;
+	color: #77b8ff;
+	font-family: logsprint;
+	text-align: center;
+}
+
+#logger {
+	border: 1px grey solid;
+	border-radius: 1em;
+	padding: 1em;
+	background: #77b8ff;
+}
+
+#loggerAccueil {
+	border: 1px grey solid;
+	border-radius: 1em;
+	padding: 1em;
+	background: black;
+	margin-top: 2em;	
+}
+
+#createTitle {
+	padding-left: 1em;
+}
+
+#logo {
+	margin-top: 1em;
+}
+
+label {
+	font-style: italic;
+	color:  #003f83 ;
+}
+
+form button {
+	width: 8.2em;
+	height: 2em;
+	margin-top: 1em; 
+}
+
+#title,#createTitle {
+font-family: logsprint;
+font-size: 2em;
+}
+
+#para {
+	margin-left: -3em;
+	color:  #395f89;
+}
+
+#sprintTitle {
+	margin-top: -5em;
+	color:  #2a95ff ;
+	font-weight: bold;
+}
+
+#drapLogUp {
+	display: inline-block;
+}
+
+#drapLogIn {
+	margin-top: -18em;
+	display:inline-block;
+}
+
+#gauche {
+	background-color: #f7fbff; 
+	margin: -5em 0 5em 1em;
+	float: left;
+	width: 12em;
+	height: 5em;
+	display:block;
+	position: relative;
+	border: 1px solid black;
+	border-radius: 0.5em;
+	box-shadow: 1em 2em 1em #aaa;
+	font-family: logsprint;
+}
+
+#droite {
+	background-color:   #f7fbff  ; 
+	margin: -5em 1em 5em 0;
+	float: right;
+	width: 12em;
+	height: 10em;
+	display:block;
+	position: relative;
+	border: 1px solid black;	
+	border-radius: 0.5em;
+	box-shadow: 1em 1em 2em #aaa;
+	font-family: logsprint;
+}
+
+cite {
+	 font-size: 75%;
+}

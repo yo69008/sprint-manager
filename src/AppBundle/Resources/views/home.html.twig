@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}-Home-{% endblock %}
+
+{% block navigation %}
+	<div id='menu'>
+		<a href="{{ path('homepage') }}">
+			<img src="{{ asset('image/sprint.png') }}" alt="Sprint" />
+		</a>
+
+        {% if global_access %}
+    		<a href="{{ path('left') }}"><img src="{{ asset('image/10402.png') }}" width=5% height: 5% alt="logout" /></a> 
+        {% else  %}
+    		<a href="{{ path('auth') }}">Sign In</a>
+    		<a href="{{ path('join') }}">Sign Up</a>
+        {% endif  %}
+ 	</div> 
+{% endblock %}
+{% block section %}
+    <section id='runner'>
+        <div id='title' class='col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-5'>
+            <h1 id='sprintTitle'>SPRINT IO</h1>
+            <p id="para"> Sprint Manager in Kanban board </p>
+        </div>
+            {% if global_access %}
+        		<h2 class='col-xs-2 col-xs-offset-5'><a href="{{ path('sprint') }}">SPRINT</a></h2>
+            {% else  %}
+             	<div id='drapLogUp' class='col-xs-8 col-xs-offset-2 col-md-2 col-md-offset-2'>
+                	<a href="{{ path('join') }}"><img src="{{ asset('image/10411.png') }}" /></a>
+                </div>
+              	<div id='drapLogIn' class='col-xs-8 col-xs-offset-2 col-md-2 col-md-offset-8'>
+                	<a href="{{ path('auth') }}"><img src="{{ asset('image/10396.png') }}" /></a>
+                </div>
+            {% endif  %}
+        </div>
+    </section>
+{% endblock %}
+
+

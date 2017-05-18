@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block section %}
+ 	<section>
+    	<div id='returnHome'>
+            <a href="{{ path('homepage') }}">
+            <img src="{{ asset('image/sprint.png') }}" alt="home" /></a>
+    	</div>
+		<div id='title' class='col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-5'>
+            <h1 id='sprintTitle'>{{ title }}</h1>
+		</div>         
+        {% if master %}
+        	<p>
+        		<h2>
+        			<a href="{{ path('delete') }}">
+        				<img src="{{ asset('image/garbage.png') }}" 
+        					 width="5%" 
+        					 height="5%" 
+        					 alt="deleteSprint" />
+					</a>
+    			</h2>
+			</p>
+        {% endif %}
+    	<div id='barre'>
+            {% if percent == 100 %}
+            	<h3>Sprint is finished !</h3>
+            {% else %}
+        		<p>
+        			<h3>
+        				<u>
+        					<i>Sprint on Progress...</i>
+    					</u>
+					</h3>
+				</p>
+            {% endif %}
+		
+    		<progress max="100" value="{{ percent }}">{{ percent }}</progress>
+        	<p>
+        		<h2>Percent :{{ percent }} % of {{ day }} Day.</h2>
+    		</p>
+    	</div>
+    
+		<h2 id='gauche'>Objectif :
+			<cite>{{ goal }}</cite>
+		</h2>
+		<p>
+			<h2 id='droite'>Description :
+				<cite>{{ description }}</cite>
+			</h2>
+		</p>
+	</section>
+{% endblock %}
